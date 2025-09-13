@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,5 +65,102 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+} */
+
+
+
+/* Sidebar Slide Animation */
+.sidebar-transition {
+  transition: transform 0.3s ease-in-out;
 }
+
+.sidebar-open {
+  transform: translateX(0);
+}
+
+.sidebar-closed {
+  transform: translateX(-100%);
+}
+
+/* Hover effect for sidebar links */
+.hover-effect:hover {
+  background-color: rgba(0, 123, 255, 0.1); 
+  transform: scale(1.03);
+  transition: all 0.2s ease;
+}
+
+
+/* Smooth sidebar animation */
+.sidebar-transition {
+  transition: all 0.3s ease;
+}
+
+/* Mobile drawer effect */
+@media (max-width: 992px) {
+  aside {
+    position: fixed !important;
+    top: 56px; 
+    left: -250px; 
+    height: calc(100% - 56px); 
+    z-index: 1050;
+  }
+
+  aside.sidebar-open {
+    left: 0; 
+  }
+}
+
+/* Dark backdrop for mobile sidebar */
+/* .sidebar-overlay {
+  position: fixed;
+  top: 56px; /* same as Navbar height */
+  /* left: 0;
+  width: 100%;
+  height: calc(100% - 56px); /* from navbar downwards */
+  /* background: rgba(0, 0, 0, 0.5);
+  z-index: 1040; below sidebar (1050) */
+
+  /* opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s;
+}
+
+.sidebar-overlay.show {
+  opacity: 1;
+  visibility: visible;
+} */ */ */
+
+
+/* Footer Social Hover Effects */
+.social-icon {
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+.social-icon:hover {
+  transform: scale(1.2);
+}
+.social-icon.facebook:hover {
+  color: #1877f2 !important; /* Facebook blue */
+}
+.social-icon.twitter:hover {
+  color: #1da1f2 !important; /* Twitter blue */
+}
+.social-icon.linkedin:hover {
+  color: #0a66c2 !important; /* LinkedIn blue */
+}
+.social-icon.github:hover {
+  color: #333 !important; /* GitHub dark */
+}
+
+/* Back-to-top Hover Effect */
+.back-to-top {
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.back-to-top:hover {
+  transform: scale(1.15);
+  background-color: #0d6efd !important; /* Bootstrap primary */
+  color: white !important;
+}
+
+
 

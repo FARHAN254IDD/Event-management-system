@@ -14,9 +14,19 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // ✅ Bootstrap JS (for mod
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
+import './index.css'
+import AOS from "aos"
+import "aos/dist/aos.css"
+import { AuthProvider } from './context/AuthContext.jsx';
+
+
+
+AOS. init({duration: 1000, once: true});
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <AuthProvider>
     <App />
+    </AuthProvider>
   </React.StrictMode>,
 )

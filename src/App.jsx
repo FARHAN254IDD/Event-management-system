@@ -123,7 +123,53 @@
 // }
 
 
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import Layout from "./layout/Layout";
+// import { AuthProvider } from "./context/AuthContext";
+// import ProtectedRoute from "./components/ProtectedRoute";
+
+// import Home from "./pages/Home";
+// import Events from "./pages/Events";
+// import Reports from "./pages/Reports";
+// import Login from "./pages/Login";
+// import Register from "./pages/Register";
+// import ForgotPassword from "./pages/ForgotPassword";
+// import Profile from "./pages/Profile";
+// import Settings from "./pages/Settings";
+
+
+// function App() {
+//   return (
+//     <Router>
+      
+    
+//       <Routes>
+//         {/* Pages with Layout */}
+//         <Route path="/" element={<Layout><Home /></Layout>} />
+//         <Route path="/events" element={<Layout><Events /></Layout>} />
+//         <Route path="/reports" element={<Layout><Reports /></Layout>} />
+
+//         {/* Auth Pages without Layout */}
+//         <Route path="/login" element={<Login />} />
+//         <Route path="/register" element={<Register />} />
+//         <Route path="/forgot-password" element={<ForgotPassword />} />
+//         <Route path="/profile" element={<Profile />} />   {/* ✅ NEW */}
+//         <Route path="/settings" element={<Settings />} /> {/* ✅ NEW */}
+//       </Routes>
+      
+    
+    
+//     </Router>
+//   );
+// }
+
+// export default App;
+
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+
 import Layout from "./layout/Layout";
 
 import Home from "./pages/Home";
@@ -136,22 +182,49 @@ import ForgotPassword from "./pages/ForgotPassword";
 function App() {
   return (
     <Router>
-      <Routes>
-        {/* Pages with Layout */}
-        <Route path="/" element={<Layout><Home /></Layout>} />
-        <Route path="/events" element={<Layout><Events /></Layout>} />
-        <Route path="/reports" element={<Layout><Reports /></Layout>} />
+      <AuthProvider>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
 
-        {/* Auth Pages without Layout */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-      </Routes>
+            {/* Events → Admin & Employee */}
+            <Route
+              path="/events"
+              element={
+                <ProtectedRoute allowedRoles={["Admin", "Employee"]}>
+                  <Events />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Reports → Admin & Employee only */}
+            <Route
+              path="/reports"
+              element={
+                <ProtectedRoute allowedRoles={["Admin", "Employee"]}>
+                  <Reports />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Auth Pages */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+          </Routes>
+        </Layout>
+      </AuthProvider>
     </Router>
   );
 }
 
 export default App;
+
+
+
+
+
+
 
 
 
